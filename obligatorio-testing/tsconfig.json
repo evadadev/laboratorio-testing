@@ -10,6 +10,7 @@
     "noLib": false,
     "allowJs": true,
     "suppressImplicitAnyIndexErrors": true,
+    "ignoreDeprecations": "5.0",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "baseUrl": "./src/",
