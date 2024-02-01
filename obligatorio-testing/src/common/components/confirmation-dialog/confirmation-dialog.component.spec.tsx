@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, within} from '@testing-library/react';
 import  { userEvent } from '@testing-library/user-event';
-import { ConfirmationDialogComponent } from "./confirmation-dialog/confirmation-dialog.component";
+import { ConfirmationDialogComponent } from "./confirmation-dialog.component";
 
 
 describe('ConfirmationDialogComponent component spec', () => {
@@ -58,7 +58,7 @@ describe('ConfirmationDialogComponent component spec', () => {
         //Arrange
         const onAccept = jest.fn();
         const props = {
-            isOpen: false,
+            isOpen: true,
             onAccept,
             onClose: jest.fn(),
             title: "Título dialogo",
@@ -68,20 +68,14 @@ describe('ConfirmationDialogComponent component spec', () => {
         //Act
         render(<ConfirmationDialogComponent {...props}/>)
 
-        const buttonElement = screen.queryByRole('button', { name: /Aceptar/i });
+        const buttonElement = screen.getByRole('button', { name: /Aceptar/i });
         await userEvent.click(buttonElement);
 
-        const textElement = screen.queryByText('text');
-        const acceptButtonElement = within(textElement).queryByRole('button', { name: /Aceptar/i })
-        await userEvent.click(acceptButtonElement)
-    //     //Assert
-    //     expect(props.onAccept).toHaveBeenCalled()
-
-        // const acceptButton = screen.queryByRole('button', { name: /Aceptar/i });
-        // userEvent.click(acceptButton);
+        const dialogElement = screen.getByRole('dialog');
+        const acceptButtonElement = within(dialogElement).getByRole('button', { name: /Aceptar/i})
+        await userEvent.click(acceptButtonElement);
 
         //Assert
-
         expect(props.onAccept).toHaveBeenCalled()
     })
 });
