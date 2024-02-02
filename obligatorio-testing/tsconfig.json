@@ -20,7 +20,8 @@
       "core": ["core"],
       "layouts": ["layouts"],
       "pods": ["pods"],
-      "scenes": ["scenes"]
+      "scenes": ["scenes"],
+      "@/*": ["*"]
     }
   },
   "include": ["./src/**/*", "./config/test/setup.ts", "./global.types.d.ts"]
